@@ -1,6 +1,8 @@
-package com.dolap.backend.ecommercesite.domain.product.command;
+package com.dolap.backend.ecommercesite.domain.product.commands;
 
-public class DeleteProductCommand {
+import com.dolap.backend.ecommercesite.interfaces.Command;
+
+public class DeleteProductCommand implements Command {
 
     private String shipperId;
 

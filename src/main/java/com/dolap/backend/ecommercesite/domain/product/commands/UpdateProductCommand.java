@@ -1,10 +1,9 @@
-package com.dolap.backend.ecommercesite.domain.product.command;
+package com.dolap.backend.ecommercesite.domain.product.commands;
 
 import com.dolap.backend.ecommercesite.domain.constants.GenderTypeEnum;
+import com.dolap.backend.ecommercesite.interfaces.Command;
 
-import java.util.List;
-
-public class UpdateProductCommand {
+public class UpdateProductCommand implements Command {
 
     private String name;
 
@@ -18,7 +17,7 @@ public class UpdateProductCommand {
 
     private String description;
 
-    private List<String> photoUrl;
+    private String photoUrl;
 
     private GenderTypeEnum gender;
 
@@ -70,11 +69,11 @@ public class UpdateProductCommand {
         this.description = description;
     }
 
-    public List<String> getPhotoUrl() {
+    public String getPhotoUrl() {
         return photoUrl;
     }
 
-    public void setPhotoUrl(List<String> photoUrl) {
+    public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
 
