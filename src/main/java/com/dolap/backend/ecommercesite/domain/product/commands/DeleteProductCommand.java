@@ -8,21 +8,21 @@ import java.util.Objects;
 public class DeleteProductCommand implements Command {
 
     @JsonIgnore
-    private long productId;
+    private long id;
 
     public DeleteProductCommand() {
     }
 
-    public DeleteProductCommand(long productId) {
-        this.productId = productId;
+    public DeleteProductCommand(long id) {
+        this.id = id;
     }
 
-    public long getProductId() {
-        return productId;
+    public long getId() {
+        return id;
     }
 
-    public void setProductId(long productId) {
-        this.productId = productId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Override
@@ -30,18 +30,18 @@ public class DeleteProductCommand implements Command {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DeleteProductCommand that = (DeleteProductCommand) o;
-        return Objects.equals(productId, that.productId);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "DeleteProductCommand{" +
-                "productId='" + productId + '\'' +
+                "id=" + id +
                 '}';
     }
 

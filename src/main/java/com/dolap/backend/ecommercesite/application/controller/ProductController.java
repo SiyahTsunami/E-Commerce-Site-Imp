@@ -46,7 +46,7 @@ public class ProductController {
 
     @DeleteMapping("/{productId}")
     public CompletableFuture<ResponseEntity> deleteProduct(@RequestBody DeleteProductCommand command, @PathVariable long productId) {
-        command.setProductId(productId);
+        command.setId(productId);
 
         CompletableFuture<Void> task = commandGateway.send(command);
 
