@@ -39,7 +39,7 @@ public class Product {
 
     private GenderTypeEnum gender;
 
-    private String sellerId;
+    private long sellerId;
 
     private String createdDate;
 
@@ -113,7 +113,7 @@ public class Product {
         return gender;
     }
 
-    public String getSellerId() {
+    public long getSellerId() {
         return sellerId;
     }
 

@@ -5,6 +5,7 @@ import com.dolap.backend.ecommercesite.domain.product.commands.AddProductCommand
 import com.dolap.backend.ecommercesite.domain.product.commands.DeleteProductCommand;
 import com.dolap.backend.ecommercesite.domain.product.commands.UpdateProductCommand;
 import com.dolap.backend.ecommercesite.domain.product.presentation.AddProductResponse;
+import com.dolap.backend.ecommercesite.domain.product.presentation.AddProductResponseModel;
 import com.dolap.backend.ecommercesite.infrastructure.repositories.ProductCommandRespository;
 import org.axonframework.commandhandling.CommandHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,9 @@ public class ProductCommandHandler {
 
         productCommandRespository.save(product);
 
-        return new AddProductResponse(product.getId());
+        AddProductResponseModel addProductResponseModel = getAddProductResponseModel(product);
+
+        return new AddProductResponse(addProductResponseModel);
     }
 
     @CommandHandler
@@ -37,6 +40,14 @@ public class ProductCommandHandler {
     @CommandHandler
     public void delete(DeleteProductCommand command) {
 
+    }
+
+    private AddProductResponseModel getAddProductResponseModel(Product product) {
+        AddProductResponseModel addProductResponseModel = new AddProductResponseModel();
+        addProductResponseModel.setProductId(product.getId());
+        addProductResponseModel.setSellerId(product.getSellerId());
+        addProductResponseModel.setCreatedDate(product.getCreatedDate());
+        return addProductResponseModel;
     }
 
 }
