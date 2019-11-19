@@ -4,26 +4,37 @@ import com.dolap.backend.ecommercesite.domain.constants.GenderTypeEnum;
 import com.dolap.backend.ecommercesite.domain.constants.ProductTypeEnum;
 import com.dolap.backend.ecommercesite.interfaces.Command;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 public class AddProductCommand implements Command {
 
+    @NotBlank
     private String name;
 
+    @NotNull
     private ProductTypeEnum type;
 
+    @NotBlank
     private String description;
 
+    @NotBlank
     private String content;
 
+    @NotBlank
     private String brand;
 
+    @NotBlank
     private String unitPrice;
 
+    @NotBlank
     private String unitWeight;
 
+    @NotBlank
     private String photoUrl;
 
+    @NotNull
     private GenderTypeEnum gender;
 
     public AddProductCommand() {

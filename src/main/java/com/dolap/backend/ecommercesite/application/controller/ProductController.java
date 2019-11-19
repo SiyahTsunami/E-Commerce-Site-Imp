@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
@@ -29,7 +30,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public CompletableFuture<ResponseEntity> addProduct(@RequestBody AddProductCommand command) {
+    public CompletableFuture<ResponseEntity> addProduct(@Valid @RequestBody AddProductCommand command) {
         CompletableFuture<AddProductResponse> task = commandGateway.send(command);
 
         return task.thenApply(ResponseEntity::ok);
