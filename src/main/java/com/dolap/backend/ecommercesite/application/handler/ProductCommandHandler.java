@@ -1,12 +1,12 @@
 package com.dolap.backend.ecommercesite.application.handler;
 
+import com.dolap.backend.ecommercesite.domain.constants.ResponseModel;
 import com.dolap.backend.ecommercesite.domain.product.Product;
 import com.dolap.backend.ecommercesite.domain.product.commands.AddProductCommand;
 import com.dolap.backend.ecommercesite.domain.product.commands.DeleteProductCommand;
 import com.dolap.backend.ecommercesite.domain.product.commands.UpdateProductCommand;
 import com.dolap.backend.ecommercesite.domain.product.exceptions.ProductNotFoundException;
 import com.dolap.backend.ecommercesite.domain.product.presentation.AddProductResponseModel;
-import com.dolap.backend.ecommercesite.domain.product.presentation.ProductResponse;
 import com.dolap.backend.ecommercesite.infrastructure.repositories.ProductRepository;
 import org.axonframework.commandhandling.CommandHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,12 @@ public class ProductCommandHandler {
     }
 
     @CommandHandler
-    public ProductResponse add(AddProductCommand command) {
+    public ResponseModel add(AddProductCommand command) {
         Product product = new Product(command);
 
         productRepository.save(product);
 
-        return new ProductResponse<>(createAddProductResponseModel(product));
+        return new ResponseModel<>(createAddProductResponseModel(product));
     }
 
     @CommandHandler

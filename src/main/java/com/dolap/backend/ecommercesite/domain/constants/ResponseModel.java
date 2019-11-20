@@ -1,15 +1,15 @@
-package com.dolap.backend.ecommercesite.domain.product.presentation;
+package com.dolap.backend.ecommercesite.domain.constants;
 
 import java.util.Objects;
 
-public class ProductResponse<T> {
+public class ResponseModel<T> {
 
     private T result;
 
-    public ProductResponse() {
+    public ResponseModel() {
     }
 
-    public ProductResponse(T result) {
+    public ResponseModel(T result) {
         this.result = result;
     }
 
@@ -25,7 +25,7 @@ public class ProductResponse<T> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProductResponse<?> that = (ProductResponse<?>) o;
+        ResponseModel<?> that = (ResponseModel<?>) o;
         return Objects.equals(result, that.result);
     }
 
@@ -40,4 +40,5 @@ public class ProductResponse<T> {
                 "result=" + result +
                 '}';
     }
+
 }

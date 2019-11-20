@@ -1,8 +1,8 @@
 package com.dolap.backend.ecommercesite.application.handler;
 
+import com.dolap.backend.ecommercesite.domain.constants.ResponseModel;
 import com.dolap.backend.ecommercesite.domain.product.Product;
 import com.dolap.backend.ecommercesite.domain.product.exceptions.ProductNotFoundException;
-import com.dolap.backend.ecommercesite.domain.product.presentation.ProductResponse;
 import com.dolap.backend.ecommercesite.domain.product.query.FindByProductIdQuery;
 import com.dolap.backend.ecommercesite.infrastructure.repositories.ProductRepository;
 import org.axonframework.queryhandling.QueryHandler;
@@ -20,11 +20,11 @@ public class ProductQueryHandler {
     }
 
     @QueryHandler
-    public ProductResponse get(FindByProductIdQuery query) {
+    public ResponseModel get(FindByProductIdQuery query) {
         Product product = productRepository.findProductById(query.getProductId())
                 .orElseThrow(ProductNotFoundException::new);
 
-        return new ProductResponse<>(product);
+        return new ResponseModel<>(product);
     }
 
 }
