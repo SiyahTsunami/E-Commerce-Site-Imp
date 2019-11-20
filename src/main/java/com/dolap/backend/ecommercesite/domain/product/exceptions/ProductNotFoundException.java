@@ -1,6 +1,8 @@
 package com.dolap.backend.ecommercesite.domain.product.exceptions;
 
-public class ProductNotFoundException extends RuntimeException {
+import com.dolap.backend.ecommercesite.interfaces.ECommerceException;
+
+public class ProductNotFoundException extends ECommerceException {
 
     public ProductNotFoundException() {
         super("Product not found.");

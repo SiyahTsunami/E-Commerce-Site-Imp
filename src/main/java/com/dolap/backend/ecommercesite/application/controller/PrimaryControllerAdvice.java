@@ -2,6 +2,7 @@ package com.dolap.backend.ecommercesite.application.controller;
 
 import com.dolap.backend.ecommercesite.domain.constants.exception.model.ErrorDto;
 import com.dolap.backend.ecommercesite.domain.constants.exception.model.ErrorMessage;
+import com.dolap.backend.ecommercesite.interfaces.ECommerceException;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -24,6 +25,18 @@ public class PrimaryControllerAdvice {
         ErrorDto response = new ErrorDto();
         response.setStatusCode(HttpStatus.BAD_REQUEST.value());
         response.setMessages(Collections.singletonList(new ErrorMessage(ex.getTargetType().toString(), ex.getOriginalMessage())));
+
+        return response;
+    }
+
+    @ExceptionHandler(ECommerceException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ErrorDto jsonFormatException(ECommerceException ex) {
+        ErrorDto response = new ErrorDto();
+
+        response.setStatusCode(HttpStatus.BAD_REQUEST.value());
+        response.setMessages(Collections.singletonList(new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), ex.getMessage())));
 
         return response;
     }
