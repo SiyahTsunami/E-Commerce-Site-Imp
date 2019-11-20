@@ -1,4 +1,4 @@
-package com.dolap.backend.ecommercesite.domain.constants.exceptions.model;
+package com.dolap.backend.ecommercesite.domain.constants.exception.model;
 
 import java.util.List;
 import java.util.Objects;

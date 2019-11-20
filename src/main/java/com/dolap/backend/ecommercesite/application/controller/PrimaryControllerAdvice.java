@@ -1,7 +1,7 @@
 package com.dolap.backend.ecommercesite.application.controller;
 
-import com.dolap.backend.ecommercesite.domain.constants.exceptions.model.ErrorDto;
-import com.dolap.backend.ecommercesite.domain.constants.exceptions.model.ErrorMessage;
+import com.dolap.backend.ecommercesite.domain.constants.exception.model.ErrorDto;
+import com.dolap.backend.ecommercesite.domain.constants.exception.model.ErrorMessage;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

@@ -1,4 +1,4 @@
-package com.dolap.backend.ecommercesite.domain.constants.exceptions;
+package com.dolap.backend.ecommercesite.domain.product.exceptions;
 
 public class ProductNotFoundException extends RuntimeException {
 

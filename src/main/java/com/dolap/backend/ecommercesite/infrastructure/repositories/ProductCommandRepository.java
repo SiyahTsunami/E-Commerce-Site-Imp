@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ProductCommandRespository extends CrudRepository<Product, Long> {
+public interface ProductCommandRespository extends CrudRepository<Product, String> {
 
-    Optional<Product> findProductById(long id);
+    Optional<Product> findProductById(String id);
 }
