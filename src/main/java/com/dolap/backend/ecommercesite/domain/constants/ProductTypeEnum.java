@@ -1,6 +1,6 @@
 package com.dolap.backend.ecommercesite.domain.constants;
 
-public enum  ProductTypeEnum {
+public enum ProductTypeEnum {
     Clothing,
     Electronic,
     HomeAndLife,

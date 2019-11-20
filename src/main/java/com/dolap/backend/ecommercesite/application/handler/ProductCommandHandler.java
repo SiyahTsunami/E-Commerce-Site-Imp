@@ -4,6 +4,7 @@ import com.dolap.backend.ecommercesite.domain.product.Product;
 import com.dolap.backend.ecommercesite.domain.product.commands.AddProductCommand;
 import com.dolap.backend.ecommercesite.domain.product.commands.DeleteProductCommand;
 import com.dolap.backend.ecommercesite.domain.product.commands.UpdateProductCommand;
+import com.dolap.backend.ecommercesite.domain.product.exceptions.ProductNotFoundException;
 import com.dolap.backend.ecommercesite.domain.product.presentation.AddProductResponse;
 import com.dolap.backend.ecommercesite.domain.product.presentation.AddProductResponseModel;
 import com.dolap.backend.ecommercesite.infrastructure.repositories.ProductCommandRespository;
@@ -27,22 +28,30 @@ public class ProductCommandHandler {
 
         productCommandRespository.save(product);
 
-        AddProductResponseModel addProductResponseModel = getAddProductResponseModel(product);
-
-        return new AddProductResponse(addProductResponseModel);
+        return new AddProductResponse(createAddProductResponseModel(product));
     }
 
     @CommandHandler
     public void update(UpdateProductCommand command) {
+        Product product = productCommandRespository.findProductById(command.getId())
+                .orElseThrow(ProductNotFoundException::new);
 
+        product.update(command);
+
+        productCommandRespository.save(product);
     }
 
     @CommandHandler
     public void delete(DeleteProductCommand command) {
+        Product product = productCommandRespository.findProductById(command.getId())
+                .orElseThrow(ProductNotFoundException::new);
 
+        product.delete();
+
+        productCommandRespository.save(product);
     }
 
-    private AddProductResponseModel getAddProductResponseModel(Product product) {
+    private AddProductResponseModel createAddProductResponseModel(Product product) {
         AddProductResponseModel addProductResponseModel = new AddProductResponseModel();
         addProductResponseModel.setProductId(product.getId());
         addProductResponseModel.setSellerId(product.getSellerId());
