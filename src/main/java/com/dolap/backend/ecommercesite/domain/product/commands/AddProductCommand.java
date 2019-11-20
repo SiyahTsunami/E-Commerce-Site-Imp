@@ -26,10 +26,10 @@ public class AddProductCommand implements Command {
     private String brand;
 
     @NotBlank
-    private String unitPrice;
+    private double unitPrice;
 
     @NotBlank
-    private String unitWeight;
+    private double unitWeight;
 
     @NotBlank
     private String photoUrl;
@@ -40,7 +40,7 @@ public class AddProductCommand implements Command {
     public AddProductCommand() {
     }
 
-    public AddProductCommand(String name, ProductTypeEnum type, String description, String content, String brand, String unitPrice, String unitWeight, String photoUrl, GenderTypeEnum gender) {
+    public AddProductCommand(String name, ProductTypeEnum type, String description, String content, String brand, double unitPrice, double unitWeight, String photoUrl, GenderTypeEnum gender) {
         this.name = name;
         this.type = type;
         this.description = description;
@@ -92,19 +92,19 @@ public class AddProductCommand implements Command {
         this.brand = brand;
     }
 
-    public String getUnitPrice() {
+    public double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(String unitPrice) {
+    public void setUnitPrice(double unitPrice) {
         this.unitPrice = unitPrice;
     }
 
-    public String getUnitWeight() {
+    public double getUnitWeight() {
         return unitWeight;
     }
 
-    public void setUnitWeight(String unitWeight) {
+    public void setUnitWeight(double unitWeight) {
         this.unitWeight = unitWeight;
     }
 

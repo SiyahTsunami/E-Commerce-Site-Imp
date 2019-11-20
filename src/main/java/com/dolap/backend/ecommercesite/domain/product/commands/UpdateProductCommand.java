@@ -22,9 +22,9 @@ public class UpdateProductCommand implements Command {
 
     private String brand;
 
-    private String unitPrice;
+    private double unitPrice;
 
-    private String unitWeight;
+    private double unitWeight;
 
     private String photoUrl;
 
@@ -33,7 +33,7 @@ public class UpdateProductCommand implements Command {
     public UpdateProductCommand() {
     }
 
-    public UpdateProductCommand(String name, ProductTypeEnum type, String description, String content, String brand, String unitPrice, String unitWeight, String photoUrl, GenderTypeEnum gender) {
+    public UpdateProductCommand(String name, ProductTypeEnum type, String description, String content, String brand, double unitPrice, double unitWeight, String photoUrl, GenderTypeEnum gender) {
         this.name = name;
         this.type = type;
         this.description = description;
@@ -93,19 +93,19 @@ public class UpdateProductCommand implements Command {
         this.brand = brand;
     }
 
-    public String getUnitPrice() {
+    public double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(String unitPrice) {
+    public void setUnitPrice(double unitPrice) {
         this.unitPrice = unitPrice;
     }
 
-    public String getUnitWeight() {
+    public double getUnitWeight() {
         return unitWeight;
     }
 
-    public void setUnitWeight(String unitWeight) {
+    public void setUnitWeight(double unitWeight) {
         this.unitWeight = unitWeight;
     }
 
@@ -131,13 +131,13 @@ public class UpdateProductCommand implements Command {
         if (o == null || getClass() != o.getClass()) return false;
         UpdateProductCommand that = (UpdateProductCommand) o;
         return id == that.id &&
+                Double.compare(that.unitPrice, unitPrice) == 0 &&
+                Double.compare(that.unitWeight, unitWeight) == 0 &&
                 Objects.equals(name, that.name) &&
                 type == that.type &&
                 Objects.equals(description, that.description) &&
                 Objects.equals(content, that.content) &&
                 Objects.equals(brand, that.brand) &&
-                Objects.equals(unitPrice, that.unitPrice) &&
-                Objects.equals(unitWeight, that.unitWeight) &&
                 Objects.equals(photoUrl, that.photoUrl) &&
                 gender == that.gender;
     }
@@ -156,8 +156,8 @@ public class UpdateProductCommand implements Command {
                 ", description='" + description + '\'' +
                 ", content='" + content + '\'' +
                 ", brand='" + brand + '\'' +
-                ", unitPrice='" + unitPrice + '\'' +
-                ", unitWeight='" + unitWeight + '\'' +
+                ", unitPrice=" + unitPrice +
+                ", unitWeight=" + unitWeight +
                 ", photoUrl='" + photoUrl + '\'' +
                 ", gender=" + gender +
                 '}';

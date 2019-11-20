@@ -4,22 +4,22 @@ import com.dolap.backend.ecommercesite.domain.constants.GenderTypeEnum;
 import com.dolap.backend.ecommercesite.domain.constants.ProductTypeEnum;
 import com.dolap.backend.ecommercesite.domain.product.commands.AddProductCommand;
 import com.dolap.backend.ecommercesite.domain.product.commands.UpdateProductCommand;
-import org.apache.commons.lang3.EnumUtils;
+import com.dolap.backend.ecommercesite.infrastructure.operations.DateOperations;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.axonframework.modelling.command.AggregateRoot;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @AggregateRoot
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
 
     private String name;
 
@@ -31,9 +31,9 @@ public class Product {
 
     private String brand;
 
-    private String unitPrice;
+    private double unitPrice;
 
-    private String unitWeight;
+    private double unitWeight;
 
     private String photoUrl;
 
@@ -51,33 +51,40 @@ public class Product {
     }
 
     public Product(AddProductCommand command) {
+        this.id = "Product_" + UUID.randomUUID().toString();
         this.name = command.getName();
         this.type = command.getType();
+        this.description = command.getDescription();
+        this.content = command.getContent();
         this.brand = command.getBrand();
         this.unitPrice = command.getUnitPrice();
         this.unitWeight = command.getUnitWeight();
-        this.description = command.getDescription();
         this.photoUrl = command.getPhotoUrl();
         this.gender = command.getGender();
+        this.createdDate = DateOperations.getNow();
         this.isDeleted = false;
     }
 
     public void update(UpdateProductCommand command) {
         this.name = StringUtils.isBlank(command.getName()) ? this.name : command.getName();
-        this.type = EnumUtils.isValidEnum(ProductTypeEnum.class, command.getType().name()) ? this.type : command.getType();
-        this.brand = StringUtils.isBlank(command.getBrand()) ? this.brand : command.getBrand();
-        this.unitPrice = StringUtils.isBlank(command.getUnitPrice()) ? this.unitPrice : command.getUnitPrice();
-        this.unitWeight = StringUtils.isBlank(command.getUnitWeight()) ? this.unitWeight : command.getUnitWeight();
+        this.type = command.getType() == null ? this.type : command.getType();
         this.description = StringUtils.isBlank(command.getDescription()) ? this.description : command.getDescription();
+        this.content = StringUtils.isBlank(command.getContent()) ? this.description : command.getDescription();
+        this.brand = StringUtils.isBlank(command.getBrand()) ? this.brand : command.getBrand();
+        this.unitPrice = ObjectUtils.isEmpty(command.getUnitPrice()) ? this.unitPrice : command.getUnitPrice();
+        this.unitWeight = ObjectUtils.isEmpty(command.getUnitWeight()) ? this.unitWeight : command.getUnitWeight();
         this.photoUrl = StringUtils.isBlank(command.getPhotoUrl()) ? this.photoUrl : command.getPhotoUrl();
-        this.gender = EnumUtils.isValidEnum(GenderTypeEnum.class, command.getGender().name()) ? this.gender : command.getGender();
+        this.gender = command.getGender() == null ? this.gender : command.getGender();
+        this.changedDate = DateOperations.getNow();
+        ;
     }
 
     public void delete() {
+        this.changedDate = DateOperations.getNow();
         this.isDeleted = true;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -89,20 +96,24 @@ public class Product {
         return type;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
     public String getBrand() {
         return brand;
     }
 
-    public String getUnitPrice() {
+    public double getUnitPrice() {
         return unitPrice;
     }
 
-    public String getUnitWeight() {
+    public double getUnitWeight() {
         return unitWeight;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public String getPhotoUrl() {
@@ -128,4 +139,38 @@ public class Product {
     public boolean isDeleted() {
         return isDeleted;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(id, product.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", type=" + type +
+                ", description='" + description + '\'' +
+                ", content='" + content + '\'' +
+                ", brand='" + brand + '\'' +
+                ", unitPrice=" + unitPrice +
+                ", unitWeight=" + unitWeight +
+                ", photoUrl='" + photoUrl + '\'' +
+                ", gender=" + gender +
+                ", sellerId=" + sellerId +
+                ", createdDate='" + createdDate + '\'' +
+                ", changedDate='" + changedDate + '\'' +
+                ", isDeleted=" + isDeleted +
+                '}';
+    }
+
 }
