@@ -24,7 +24,7 @@ public class PrimaryControllerAdvice {
     public ErrorDto jsonFormatException(InvalidFormatException ex) {
         ErrorDto response = new ErrorDto();
         response.setStatusCode(HttpStatus.BAD_REQUEST.value());
-        response.setMessages(Collections.singletonList(new ErrorMessage(ex.getTargetType().toString(), ex.getOriginalMessage())));
+        response.setMessages(Collections.singletonList(new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), ex.getOriginalMessage())));
 
         return response;
     }
