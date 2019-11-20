@@ -7,7 +7,7 @@ import com.dolap.backend.ecommercesite.domain.product.commands.UpdateProductComm
 import com.dolap.backend.ecommercesite.domain.product.exceptions.ProductNotFoundException;
 import com.dolap.backend.ecommercesite.domain.product.presentation.AddProductResponse;
 import com.dolap.backend.ecommercesite.domain.product.presentation.AddProductResponseModel;
-import com.dolap.backend.ecommercesite.infrastructure.repositories.ProductCommandRespository;
+import com.dolap.backend.ecommercesite.infrastructure.repositories.ProductCommandRepository;
 import org.axonframework.commandhandling.CommandHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,40 +15,40 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductCommandHandler {
 
-    private final ProductCommandRespository productCommandRespository;
+    private final ProductCommandRepository productCommandRepository;
 
     @Autowired
-    public ProductCommandHandler(ProductCommandRespository productCommandRespository) {
-        this.productCommandRespository = productCommandRespository;
+    public ProductCommandHandler(ProductCommandRepository productCommandRepository) {
+        this.productCommandRepository = productCommandRepository;
     }
 
     @CommandHandler
     public AddProductResponse add(AddProductCommand command) {
         Product product = new Product(command);
 
-        productCommandRespository.save(product);
+        productCommandRepository.save(product);
 
         return new AddProductResponse(createAddProductResponseModel(product));
     }
 
     @CommandHandler
     public void update(UpdateProductCommand command) {
-        Product product = productCommandRespository.findProductById(command.getId())
+        Product product = productCommandRepository.findProductById(command.getId())
                 .orElseThrow(ProductNotFoundException::new);
 
         product.update(command);
 
-        productCommandRespository.save(product);
+        productCommandRepository.save(product);
     }
 
     @CommandHandler
     public void delete(DeleteProductCommand command) {
-        Product product = productCommandRespository.findProductById(command.getId())
+        Product product = productCommandRepository.findProductById(command.getId())
                 .orElseThrow(ProductNotFoundException::new);
 
         product.delete();
 
-        productCommandRespository.save(product);
+        productCommandRepository.save(product);
     }
 
     private AddProductResponseModel createAddProductResponseModel(Product product) {
