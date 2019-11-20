@@ -4,34 +4,34 @@ import java.util.Objects;
 
 public class AddProductResponseModel {
 
-    private long productId;
+    private String productId;
 
-    private long sellerId;
+    private String sellerId;
 
     private String createdDate;
 
     public AddProductResponseModel() {
     }
 
-    public AddProductResponseModel(long productId, long sellerId, String createdDate) {
+    public AddProductResponseModel(String productId, String sellerId, String createdDate) {
         this.productId = productId;
         this.sellerId = sellerId;
         this.createdDate = createdDate;
     }
 
-    public long getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(long productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
-    public long getSellerId() {
+    public String getSellerId() {
         return sellerId;
     }
 
-    public void setSellerId(long sellerId) {
+    public void setSellerId(String sellerId) {
         this.sellerId = sellerId;
     }
 

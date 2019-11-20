@@ -39,7 +39,7 @@ public class Product {
 
     private GenderTypeEnum gender;
 
-    private long sellerId;
+    private String sellerId;
 
     private String createdDate;
 
@@ -76,7 +76,6 @@ public class Product {
         this.photoUrl = StringUtils.isBlank(command.getPhotoUrl()) ? this.photoUrl : command.getPhotoUrl();
         this.gender = command.getGender() == null ? this.gender : command.getGender();
         this.changedDate = DateOperations.getNow();
-        ;
     }
 
     public void delete() {
@@ -124,7 +123,7 @@ public class Product {
         return gender;
     }
 
-    public long getSellerId() {
+    public String getSellerId() {
         return sellerId;
     }
 

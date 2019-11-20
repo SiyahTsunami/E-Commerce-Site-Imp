@@ -8,20 +8,20 @@ import java.util.Objects;
 public class DeleteProductCommand implements Command {
 
     @JsonIgnore
-    private long id;
+    private String id;
 
     public DeleteProductCommand() {
     }
 
-    public DeleteProductCommand(long id) {
+    public DeleteProductCommand(String id) {
         this.id = id;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

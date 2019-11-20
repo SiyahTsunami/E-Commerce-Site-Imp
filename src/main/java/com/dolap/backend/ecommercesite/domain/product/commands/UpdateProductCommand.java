@@ -10,7 +10,7 @@ import java.util.Objects;
 public class UpdateProductCommand implements Command {
 
     @JsonIgnore
-    private long id;
+    private String id;
 
     private String name;
 
@@ -22,9 +22,9 @@ public class UpdateProductCommand implements Command {
 
     private String brand;
 
-    private double unitPrice;
+    private Double unitPrice;
 
-    private double unitWeight;
+    private Double unitWeight;
 
     private String photoUrl;
 
@@ -33,7 +33,7 @@ public class UpdateProductCommand implements Command {
     public UpdateProductCommand() {
     }
 
-    public UpdateProductCommand(String name, ProductTypeEnum type, String description, String content, String brand, double unitPrice, double unitWeight, String photoUrl, GenderTypeEnum gender) {
+    public UpdateProductCommand(String name, ProductTypeEnum type, String description, String content, String brand, Double unitPrice, Double unitWeight, String photoUrl, GenderTypeEnum gender) {
         this.name = name;
         this.type = type;
         this.description = description;
@@ -45,11 +45,11 @@ public class UpdateProductCommand implements Command {
         this.gender = gender;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -93,19 +93,19 @@ public class UpdateProductCommand implements Command {
         this.brand = brand;
     }
 
-    public double getUnitPrice() {
+    public Double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(double unitPrice) {
+    public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
     }
 
-    public double getUnitWeight() {
+    public Double getUnitWeight() {
         return unitWeight;
     }
 
-    public void setUnitWeight(double unitWeight) {
+    public void setUnitWeight(Double unitWeight) {
         this.unitWeight = unitWeight;
     }
 

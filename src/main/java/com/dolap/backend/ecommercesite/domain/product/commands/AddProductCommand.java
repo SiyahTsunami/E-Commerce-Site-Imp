@@ -25,10 +25,10 @@ public class AddProductCommand implements Command {
     @NotBlank
     private String brand;
 
-    @NotBlank
+    @NotNull
     private double unitPrice;
 
-    @NotBlank
+    @NotNull
     private double unitWeight;
 
     @NotBlank

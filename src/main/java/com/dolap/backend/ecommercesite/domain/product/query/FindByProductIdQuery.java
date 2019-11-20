@@ -6,20 +6,20 @@ import java.util.Objects;
 
 public class FindByProductIdQuery implements Query {
 
-    private long productId;
+    private String productId;
 
     public FindByProductIdQuery() {
     }
 
-    public FindByProductIdQuery(long productId) {
+    public FindByProductIdQuery(String productId) {
         this.productId = productId;
     }
 
-    public long getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(long productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 

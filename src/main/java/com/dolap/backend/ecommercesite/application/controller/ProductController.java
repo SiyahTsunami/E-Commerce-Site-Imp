@@ -37,7 +37,7 @@ public class ProductController {
     }
 
     @PutMapping("/{productId}")
-    public CompletableFuture<ResponseEntity> updateProduct(@RequestBody UpdateProductCommand command, @PathVariable long productId) {
+    public CompletableFuture<ResponseEntity> updateProduct(@RequestBody UpdateProductCommand command, @PathVariable String productId) {
         command.setId(productId);
 
         CompletableFuture<Void> task = commandGateway.send(command);
@@ -46,16 +46,14 @@ public class ProductController {
     }
 
     @DeleteMapping("/{productId}")
-    public CompletableFuture<ResponseEntity> deleteProduct(@RequestBody DeleteProductCommand command, @PathVariable long productId) {
-        command.setId(productId);
-
-        CompletableFuture<Void> task = commandGateway.send(command);
+    public CompletableFuture<ResponseEntity> deleteProduct(@PathVariable String productId) {
+        CompletableFuture<Void> task = commandGateway.send(new DeleteProductCommand(productId));
 
         return task.thenApply(ResponseEntity::ok);
     }
 
     @GetMapping("/{productId}")
-    public CompletableFuture<ResponseEntity<Product>> findByProductId(@PathVariable long productId) {
+    public CompletableFuture<ResponseEntity<Product>> findByProductId(@PathVariable String productId) {
         FindByProductIdQuery query = new FindByProductIdQuery(productId);
 
         CompletableFuture<Product> parcel = queryGateway.query(query, Product.class);
