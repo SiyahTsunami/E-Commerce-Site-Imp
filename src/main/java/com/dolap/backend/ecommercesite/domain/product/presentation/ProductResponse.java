@@ -2,22 +2,22 @@ package com.dolap.backend.ecommercesite.domain.product.presentation;
 
 import java.util.Objects;
 
-public class AddProductResponse {
+public class ProductResponse<T> {
 
-    private AddProductResponseModel result;
+    private T result;
 
-    public AddProductResponse() {
+    public ProductResponse() {
     }
 
-    public AddProductResponse(AddProductResponseModel result) {
+    public ProductResponse(T result) {
         this.result = result;
     }
 
-    public AddProductResponseModel getResult() {
+    public T getResult() {
         return result;
     }
 
-    public void setResult(AddProductResponseModel result) {
+    public void setResult(T result) {
         this.result = result;
     }
 
@@ -25,7 +25,7 @@ public class AddProductResponse {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AddProductResponse that = (AddProductResponse) o;
+        ProductResponse<?> that = (ProductResponse<?>) o;
         return Objects.equals(result, that.result);
     }
 
