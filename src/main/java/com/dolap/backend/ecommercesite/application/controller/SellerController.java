@@ -1,8 +1,8 @@
 package com.dolap.backend.ecommercesite.application.controller;
 
 import com.dolap.backend.ecommercesite.domain.constants.ResponseModel;
-import com.dolap.backend.ecommercesite.domain.product.commands.AddProductCommand;
-import com.dolap.backend.ecommercesite.domain.product.query.FindByProductIdQuery;
+import com.dolap.backend.ecommercesite.domain.seller.command.AddSellerCommand;
+import com.dolap.backend.ecommercesite.domain.seller.query.FindBySellerIdQuery;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/seller")
 public class SellerController {
 
     private final CommandGateway commandGateway;
@@ -27,20 +27,17 @@ public class SellerController {
     }
 
     @PostMapping
-    public CompletableFuture<ResponseEntity> addSeller(@Valid @RequestBody AddProductCommand command) {
+    public CompletableFuture<ResponseEntity> addSeller(@Valid @RequestBody AddSellerCommand command) {
         CompletableFuture<ResponseModel> task = commandGateway.send(command);
 
         return task.thenApply(ResponseEntity::ok);
     }
 
-    @GetMapping("/{productId}")
-    public CompletableFuture<ResponseEntity> findByProductId(@PathVariable String productId) {
-        FindByProductIdQuery query = new FindByProductIdQuery(productId);
-
-        CompletableFuture<ResponseModel> task = queryGateway.query(query, ResponseModel.class);
+    @GetMapping("/{sellerId}")
+    public CompletableFuture<ResponseEntity> findByProductId(@PathVariable String sellerId) {
+        CompletableFuture<ResponseModel> task = queryGateway.query(new FindBySellerIdQuery(sellerId), ResponseModel.class);
 
         return task.thenApply(ResponseEntity::ok);
     }
-
 
 }
