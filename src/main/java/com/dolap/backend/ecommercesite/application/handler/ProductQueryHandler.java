@@ -20,7 +20,7 @@ public class ProductQueryHandler {
     }
 
     @QueryHandler
-    public ResponseModel get(FindByProductIdQuery query) {
+    public ResponseModel query(FindByProductIdQuery query) {
         Product product = productRepository.findProductById(query.getProductId())
                 .orElseThrow(ProductNotFoundException::new);
 
