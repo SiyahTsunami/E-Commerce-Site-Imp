@@ -36,7 +36,7 @@ public class PrimaryControllerAdvice {
         ErrorDto response = new ErrorDto();
 
         response.setStatusCode(HttpStatus.BAD_REQUEST.value());
-        response.setMessages(Collections.singletonList(new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), ex.getMessage())));
+        response.setMessages(Collections.singletonList(new ErrorMessage(HttpStatus.BAD_REQUEST.name(), ex.getMessage())));
 
         return response;
     }
