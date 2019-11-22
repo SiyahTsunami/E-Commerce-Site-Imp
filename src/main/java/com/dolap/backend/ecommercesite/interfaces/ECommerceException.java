@@ -11,11 +11,6 @@ public class ECommerceException extends RuntimeException {
         super(message);
     }
 
-    public ECommerceException(String type, int code) {
-        super(type + "." + code);
-        messageCode = type + "." + code;
-    }
-
     public String getMessageCode() {
         return messageCode;
     }

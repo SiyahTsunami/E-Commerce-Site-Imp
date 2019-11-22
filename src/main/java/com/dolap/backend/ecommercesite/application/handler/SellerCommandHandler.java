@@ -3,6 +3,7 @@ package com.dolap.backend.ecommercesite.application.handler;
 import com.dolap.backend.ecommercesite.domain.constants.ResponseModel;
 import com.dolap.backend.ecommercesite.domain.seller.Seller;
 import com.dolap.backend.ecommercesite.domain.seller.command.AddSellerCommand;
+import com.dolap.backend.ecommercesite.domain.seller.exceptions.SellerAlreadyCreatedException;
 import com.dolap.backend.ecommercesite.domain.seller.presentation.AddSellerResponseModel;
 import com.dolap.backend.ecommercesite.infrastructure.repositories.SellerRepository;
 import org.axonframework.commandhandling.CommandHandler;
@@ -21,6 +22,10 @@ public class SellerCommandHandler {
 
     @CommandHandler
     public ResponseModel add(AddSellerCommand command) {
+        if(sellerRepository.findSellerByUsername(command.getUsername()).isPresent()) {
+            throw new SellerAlreadyCreatedException();
+        }
+
         Seller seller = new Seller(command);
 
         sellerRepository.save(seller);
