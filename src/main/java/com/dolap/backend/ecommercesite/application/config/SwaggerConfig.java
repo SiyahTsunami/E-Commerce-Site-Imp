@@ -1,5 +1,6 @@
 package com.dolap.backend.ecommercesite.application.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.annotation.Bean;
@@ -25,11 +26,8 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
     @Value("${spring.application.name}")
     private String applicationName;
 
-    private final BuildProperties buildProperties;
-
-    public SwaggerConfig(BuildProperties buildProperties) {
-        this.buildProperties = buildProperties;
-    }
+    @Autowired(required = false)
+    private BuildProperties buildProperties;
 
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
