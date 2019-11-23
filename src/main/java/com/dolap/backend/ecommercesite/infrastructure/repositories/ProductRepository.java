@@ -11,4 +11,7 @@ import java.util.Optional;
 public interface ProductRepository extends CrudRepository<Product, String> {
 
     Optional<Product> findProductById(String id);
+
+    Boolean existsByNameAndSellerUsername(String productName, String sellerUsername);
+
 }

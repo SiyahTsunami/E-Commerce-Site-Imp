@@ -12,4 +12,7 @@ public interface SellerRepository extends CrudRepository<Seller, String> {
     Optional<Seller> findSellerById(String id);
 
     Optional<Seller> findSellerByUsername(String username);
+
+    Boolean existsByUsername(String username);
+
 }
