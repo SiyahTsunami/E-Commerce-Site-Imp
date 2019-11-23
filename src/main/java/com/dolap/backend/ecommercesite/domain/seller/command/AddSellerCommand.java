@@ -2,16 +2,21 @@ package com.dolap.backend.ecommercesite.domain.seller.command;
 
 import com.dolap.backend.ecommercesite.interfaces.Command;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 public class AddSellerCommand implements Command {
 
+    @NotBlank
     private String firstName;
 
+    @NotBlank
     private String lastName;
 
+    @NotBlank
     private String username;
 
+    @NotBlank
     private String password;
 
     private String phoneNumber;

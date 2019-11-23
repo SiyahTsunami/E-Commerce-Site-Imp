@@ -5,6 +5,7 @@ import com.dolap.backend.ecommercesite.domain.constants.ProductCategoryEnum;
 import com.dolap.backend.ecommercesite.interfaces.Command;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.validation.constraints.Positive;
 import java.util.Objects;
 
 public class UpdateProductCommand implements Command {
@@ -22,8 +23,10 @@ public class UpdateProductCommand implements Command {
 
     private String brand;
 
+    @Positive
     private Double unitPrice;
 
+    @Positive
     private Double unitWeight;
 
     private String photoUrl;
