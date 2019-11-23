@@ -4,6 +4,7 @@ import com.dolap.backend.ecommercesite.domain.constants.ResponseModel;
 import com.dolap.backend.ecommercesite.domain.seller.Seller;
 import com.dolap.backend.ecommercesite.domain.seller.command.AddSellerCommand;
 import com.dolap.backend.ecommercesite.domain.seller.exceptions.SellerNotFoundException;
+import com.dolap.backend.ecommercesite.domain.seller.presentation.AddSellerResponseModel;
 import com.dolap.backend.ecommercesite.domain.seller.presentation.GetSellerResponseModel;
 import com.dolap.backend.ecommercesite.domain.seller.query.FindByUsernameQuery;
 import com.dolap.backend.ecommercesite.infrastructure.repositories.SellerRepository;
@@ -52,12 +53,20 @@ public class SellerQueryHandlerTests {
     @Test
     public void Should_Get_Seller_Successfully() {
         FindByUsernameQuery findByUsernameQuery = fixture.create(FindByUsernameQuery.class);
+        Seller seller = new Seller(fixture.create(AddSellerCommand.class));
 
-        when(sellerRepository.findSellerByUsernameAndIsDeletedFalse(findByUsernameQuery.getSellerId())).thenReturn(Optional.of(new Seller()));
+        when(sellerRepository.findSellerByUsernameAndIsDeletedFalse(findByUsernameQuery.getSellerId())).thenReturn(Optional.of(seller));
 
-
-        sellerQueryHandler.query(findByUsernameQuery);
+        ResponseModel<GetSellerResponseModel> response = sellerQueryHandler.query(findByUsernameQuery);
 
         verify(sellerRepository).findSellerByUsernameAndIsDeletedFalse(findByUsernameQuery.getSellerId());
+
+        Assert.assertEquals(response.getResult().getId(), seller.getId());
+        Assert.assertEquals(response.getResult().getFirstName(), seller.getFirstName());
+        Assert.assertEquals(response.getResult().getLastName(), seller.getLastName());
+        Assert.assertEquals(response.getResult().getUsername(), seller.getUsername());
+        Assert.assertEquals(response.getResult().getPhoneNumber(), seller.getPhoneNumber());
+        Assert.assertEquals(response.getResult().getAddress(), seller.getAddress());
+        Assert.assertEquals(response.getResult().getCreatedDate(), seller.getCreatedDate());
     }
 }

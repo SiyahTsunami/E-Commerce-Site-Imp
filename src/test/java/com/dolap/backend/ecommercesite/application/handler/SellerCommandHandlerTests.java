@@ -1,6 +1,7 @@
 package com.dolap.backend.ecommercesite.application.handler;
 
 import com.dolap.backend.ecommercesite.domain.constants.ResponseModel;
+import com.dolap.backend.ecommercesite.domain.product.presentation.AddProductResponseModel;
 import com.dolap.backend.ecommercesite.domain.seller.Seller;
 import com.dolap.backend.ecommercesite.domain.seller.command.AddSellerCommand;
 import com.dolap.backend.ecommercesite.domain.seller.exceptions.SellerAlreadyCreatedException;
@@ -57,9 +58,13 @@ public class SellerCommandHandlerTests {
 
         when(sellerRepository.existsSellerByUsernameAndIsDeletedFalse(addSellerCommand.getUsername())).thenReturn(false);
 
-        sellerCommandHandler.add(addSellerCommand);
+        ResponseModel<AddSellerResponseModel> response = sellerCommandHandler.add(addSellerCommand);
 
         verify(sellerRepository).existsSellerByUsernameAndIsDeletedFalse(addSellerCommand.getUsername());
         verify(sellerRepository).save(sellerArgumentCaptor.capture());
+
+        Assert.assertEquals(response.getResult().getSellerId(), sellerArgumentCaptor.getValue().getId());
+        Assert.assertEquals(response.getResult().getUsername(), sellerArgumentCaptor.getValue().getUsername());
+        Assert.assertEquals(response.getResult().getCreatedDate(), sellerArgumentCaptor.getValue().getCreatedDate());
     }
 }

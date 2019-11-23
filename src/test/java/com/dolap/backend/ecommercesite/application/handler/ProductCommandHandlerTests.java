@@ -1,16 +1,19 @@
 package com.dolap.backend.ecommercesite.application.handler;
 
+import com.dolap.backend.ecommercesite.domain.constants.ResponseModel;
 import com.dolap.backend.ecommercesite.domain.product.Product;
 import com.dolap.backend.ecommercesite.domain.product.commands.AddProductCommand;
 import com.dolap.backend.ecommercesite.domain.product.commands.DeleteProductCommand;
 import com.dolap.backend.ecommercesite.domain.product.commands.UpdateProductCommand;
 import com.dolap.backend.ecommercesite.domain.product.exceptions.ProductAlreadyCreatedException;
 import com.dolap.backend.ecommercesite.domain.product.exceptions.ProductNotFoundException;
+import com.dolap.backend.ecommercesite.domain.product.presentation.AddProductResponseModel;
 import com.dolap.backend.ecommercesite.domain.seller.exceptions.SellerNotFoundException;
 import com.dolap.backend.ecommercesite.infrastructure.repositories.ProductRepository;
 import com.dolap.backend.ecommercesite.infrastructure.repositories.SellerRepository;
 import com.flextrade.jfixture.JFixture;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -26,19 +29,15 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class ProductCommandHandlerTests {
 
-    @InjectMocks
-    private ProductCommandHandler productCommandHandler;
-
-    @Mock
-    private ProductRepository productRepository;
-
-    @Mock
-    private SellerRepository sellerRepository;
-
-    private JFixture fixture = new JFixture();
-
     @Captor
     ArgumentCaptor<Product> productArgumentCaptor;
+    @InjectMocks
+    private ProductCommandHandler productCommandHandler;
+    @Mock
+    private ProductRepository productRepository;
+    @Mock
+    private SellerRepository sellerRepository;
+    private JFixture fixture = new JFixture();
 
     @After
     public void after() {
@@ -80,11 +79,15 @@ public class ProductCommandHandlerTests {
         when(sellerRepository.existsSellerByUsernameAndIsDeletedFalse(addProductCommand.getSellerUsername())).thenReturn(true);
         when(productRepository.existsProductByNameAndSellerUsernameAndIsDeletedFalse(addProductCommand.getName(), addProductCommand.getSellerUsername())).thenReturn(false);
 
-        productCommandHandler.add(addProductCommand);
+        ResponseModel<AddProductResponseModel> addProductResponse = productCommandHandler.add(addProductCommand);
 
         verify(sellerRepository).existsSellerByUsernameAndIsDeletedFalse(addProductCommand.getSellerUsername());
         verify(productRepository).existsProductByNameAndSellerUsernameAndIsDeletedFalse(addProductCommand.getName(), addProductCommand.getSellerUsername());
         verify(productRepository).save(productArgumentCaptor.capture());
+
+        Assert.assertEquals(addProductResponse.getResult().getProductId(), productArgumentCaptor.getValue().getId());
+        Assert.assertEquals(addProductResponse.getResult().getSellerUsername(), productArgumentCaptor.getValue().getSellerUsername());
+        Assert.assertEquals(addProductResponse.getResult().getCreatedDate(), productArgumentCaptor.getValue().getCreatedDate());
     }
 
     @Test(expected = ProductNotFoundException.class)
