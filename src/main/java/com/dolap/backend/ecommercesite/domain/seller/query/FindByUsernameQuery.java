@@ -4,14 +4,14 @@ import com.dolap.backend.ecommercesite.interfaces.Query;
 
 import java.util.Objects;
 
-public class FindBySellerIdQuery implements Query {
+public class FindByUsernameQuery implements Query {
 
     private String sellerId;
 
-    public FindBySellerIdQuery() {
+    public FindByUsernameQuery() {
     }
 
-    public FindBySellerIdQuery(String sellerId) {
+    public FindByUsernameQuery(String sellerId) {
         this.sellerId = sellerId;
     }
 
@@ -27,7 +27,7 @@ public class FindBySellerIdQuery implements Query {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FindBySellerIdQuery that = (FindBySellerIdQuery) o;
+        FindByUsernameQuery that = (FindByUsernameQuery) o;
         return Objects.equals(sellerId, that.sellerId);
     }
 
