@@ -6,6 +6,7 @@ import com.dolap.backend.ecommercesite.interfaces.Command;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.Objects;
 
 public class AddProductCommand implements Command {
@@ -25,10 +26,10 @@ public class AddProductCommand implements Command {
     @NotBlank
     private String brand;
 
-    @NotNull
+    @Positive
     private double unitPrice;
 
-    @NotNull
+    @Positive
     private double unitWeight;
 
     @NotBlank
@@ -37,10 +38,13 @@ public class AddProductCommand implements Command {
     @NotNull
     private GenderTypeEnum gender;
 
+    @NotBlank
+    private String sellerUsername;
+
     public AddProductCommand() {
     }
 
-    public AddProductCommand(String name, ProductTypeEnum type, String description, String content, String brand, double unitPrice, double unitWeight, String photoUrl, GenderTypeEnum gender) {
+    public AddProductCommand(String name, ProductTypeEnum type, String description, String content, String brand, double unitPrice, double unitWeight, String photoUrl, GenderTypeEnum gender, String sellerUsername) {
         this.name = name;
         this.type = type;
         this.description = description;
@@ -50,6 +54,7 @@ public class AddProductCommand implements Command {
         this.unitWeight = unitWeight;
         this.photoUrl = photoUrl;
         this.gender = gender;
+        this.sellerUsername = sellerUsername;
     }
 
     public String getName() {
@@ -124,25 +129,34 @@ public class AddProductCommand implements Command {
         this.gender = gender;
     }
 
+    public String getSellerUsername() {
+        return sellerUsername;
+    }
+
+    public void setSellerUsername(String sellerUsername) {
+        this.sellerUsername = sellerUsername;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AddProductCommand that = (AddProductCommand) o;
-        return Objects.equals(name, that.name) &&
+        return Double.compare(that.unitPrice, unitPrice) == 0 &&
+                Double.compare(that.unitWeight, unitWeight) == 0 &&
+                Objects.equals(name, that.name) &&
                 type == that.type &&
                 Objects.equals(description, that.description) &&
                 Objects.equals(content, that.content) &&
                 Objects.equals(brand, that.brand) &&
-                Objects.equals(unitPrice, that.unitPrice) &&
-                Objects.equals(unitWeight, that.unitWeight) &&
                 Objects.equals(photoUrl, that.photoUrl) &&
-                gender == that.gender;
+                gender == that.gender &&
+                Objects.equals(sellerUsername, that.sellerUsername);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, type, description, content, brand, unitPrice, unitWeight, photoUrl, gender);
+        return Objects.hash(name, type, description, content, brand, unitPrice, unitWeight, photoUrl, gender, sellerUsername);
     }
 
     @Override
@@ -153,10 +167,11 @@ public class AddProductCommand implements Command {
                 ", description='" + description + '\'' +
                 ", content='" + content + '\'' +
                 ", brand='" + brand + '\'' +
-                ", unitPrice='" + unitPrice + '\'' +
-                ", unitWeight='" + unitWeight + '\'' +
+                ", unitPrice=" + unitPrice +
+                ", unitWeight=" + unitWeight +
                 ", photoUrl='" + photoUrl + '\'' +
                 ", gender=" + gender +
+                ", sellerUsername='" + sellerUsername + '\'' +
                 '}';
     }
 

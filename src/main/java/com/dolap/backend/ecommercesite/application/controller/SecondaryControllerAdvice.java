@@ -28,7 +28,7 @@ public class SecondaryControllerAdvice {
 
         ErrorDto response = new ErrorDto();
         response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-        response.setMessages(Collections.singletonList(new ErrorMessage(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.name()), throwable.getMessage())));
+        response.setMessages(Collections.singletonList(new ErrorMessage(throwable.getMessage())));
 
         return response;
     }

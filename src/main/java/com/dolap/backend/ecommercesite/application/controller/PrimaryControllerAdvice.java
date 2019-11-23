@@ -7,12 +7,16 @@ import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @RestControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -24,7 +28,23 @@ public class PrimaryControllerAdvice {
     public ErrorDto jsonFormatException(InvalidFormatException ex) {
         ErrorDto response = new ErrorDto();
         response.setStatusCode(HttpStatus.BAD_REQUEST.value());
-        response.setMessages(Collections.singletonList(new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), ex.getOriginalMessage())));
+        response.setMessages(Collections.singletonList(new ErrorMessage(ex.getOriginalMessage())));
+
+        return response;
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ErrorDto methodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        ErrorDto response = new ErrorDto();
+        response.setStatusCode(HttpStatus.BAD_REQUEST.value());
+
+        List<ErrorMessage> errorMessages = new ArrayList<>();
+        for (FieldError error : ex.getBindingResult().getFieldErrors()) {
+            errorMessages.add(new ErrorMessage(error.getField() + " : " + error.getDefaultMessage()));
+        }
+        response.setMessages(errorMessages);
 
         return response;
     }
@@ -32,11 +52,11 @@ public class PrimaryControllerAdvice {
     @ExceptionHandler(ECommerceException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public ErrorDto jsonFormatException(ECommerceException ex) {
+    public ErrorDto eCommerceException(ECommerceException ex) {
         ErrorDto response = new ErrorDto();
 
         response.setStatusCode(HttpStatus.BAD_REQUEST.value());
-        response.setMessages(Collections.singletonList(new ErrorMessage(HttpStatus.BAD_REQUEST.name(), ex.getMessage())));
+        response.setMessages(Collections.singletonList(new ErrorMessage(ex.getMessage())));
 
         return response;
     }

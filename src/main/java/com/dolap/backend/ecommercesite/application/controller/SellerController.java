@@ -2,7 +2,7 @@ package com.dolap.backend.ecommercesite.application.controller;
 
 import com.dolap.backend.ecommercesite.domain.constants.ResponseModel;
 import com.dolap.backend.ecommercesite.domain.seller.command.AddSellerCommand;
-import com.dolap.backend.ecommercesite.domain.seller.query.FindBySellerIdQuery;
+import com.dolap.backend.ecommercesite.domain.seller.query.FindByUsernameQuery;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +33,9 @@ public class SellerController {
         return task.thenApply(ResponseEntity::ok);
     }
 
-    @GetMapping("/{sellerId}")
-    public CompletableFuture<ResponseEntity> findByProductId(@PathVariable String sellerId) {
-        CompletableFuture<ResponseModel> task = queryGateway.query(new FindBySellerIdQuery(sellerId), ResponseModel.class);
+    @GetMapping("/{username}")
+    public CompletableFuture<ResponseEntity> findByUsername(@PathVariable String username) {
+        CompletableFuture<ResponseModel> task = queryGateway.query(new FindByUsernameQuery(username), ResponseModel.class);
 
         return task.thenApply(ResponseEntity::ok);
     }
