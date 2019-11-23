@@ -22,7 +22,7 @@ public class SellerCommandHandler {
 
     @CommandHandler
     public ResponseModel add(AddSellerCommand command) {
-        if (sellerRepository.existsByUsername(command.getUsername())) {
+        if (sellerRepository.existsSellerByUsernameAndIsDeletedFalse(command.getUsername())) {
             throw new SellerAlreadyCreatedException();
         }
 

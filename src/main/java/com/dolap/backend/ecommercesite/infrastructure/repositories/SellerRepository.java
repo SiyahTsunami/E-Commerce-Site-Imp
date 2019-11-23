@@ -9,10 +9,8 @@ import java.util.Optional;
 @Repository
 public interface SellerRepository extends CrudRepository<Seller, String> {
 
-    Optional<Seller> findSellerById(String id);
+    Optional<Seller> findSellerByUsernameAndIsDeletedFalse(String username);
 
-    Optional<Seller> findSellerByUsername(String username);
-
-    Boolean existsByUsername(String username);
+    Boolean existsSellerByUsernameAndIsDeletedFalse(String username);
 
 }

@@ -29,10 +29,10 @@ public class ProductCommandHandler {
 
     @CommandHandler
     public ResponseModel add(AddProductCommand command) {
-        if (!sellerRepository.existsByUsername(command.getSellerUsername())) {
+        if (!sellerRepository.existsSellerByUsernameAndIsDeletedFalse(command.getSellerUsername())) {
             throw new SellerNotFoundException();
         }
-        if (productRepository.existsByNameAndSellerUsername(command.getName(), command.getSellerUsername())) {
+        if (productRepository.existsProductByNameAndSellerUsernameAndIsDeletedFalse(command.getName(), command.getSellerUsername())) {
             throw new ProductAlreadyCreatedException();
         }
 
@@ -45,7 +45,7 @@ public class ProductCommandHandler {
 
     @CommandHandler
     public void update(UpdateProductCommand command) {
-        Product product = productRepository.findProductById(command.getId())
+        Product product = productRepository.findProductByIdAndIsDeletedFalse(command.getId())
                 .orElseThrow(ProductNotFoundException::new);
 
         product.update(command);
@@ -55,7 +55,7 @@ public class ProductCommandHandler {
 
     @CommandHandler
     public void delete(DeleteProductCommand command) {
-        Product product = productRepository.findProductById(command.getId())
+        Product product = productRepository.findProductByIdAndIsDeletedFalse(command.getId())
                 .orElseThrow(ProductNotFoundException::new);
 
         product.delete();
