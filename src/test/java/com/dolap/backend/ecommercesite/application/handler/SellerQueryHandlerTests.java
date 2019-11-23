@@ -52,9 +52,8 @@ public class SellerQueryHandlerTests {
     @Test
     public void Should_Get_Seller_Successfully() {
         FindByUsernameQuery findByUsernameQuery = fixture.create(FindByUsernameQuery.class);
-        Seller seller = new Seller(fixture.create(AddSellerCommand.class));
 
-        when(sellerRepository.findSellerByUsernameAndIsDeletedFalse(findByUsernameQuery.getSellerId())).thenReturn(Optional.of(seller));
+        when(sellerRepository.findSellerByUsernameAndIsDeletedFalse(findByUsernameQuery.getSellerId())).thenReturn(Optional.of(new Seller()));
 
 
         sellerQueryHandler.query(findByUsernameQuery);
