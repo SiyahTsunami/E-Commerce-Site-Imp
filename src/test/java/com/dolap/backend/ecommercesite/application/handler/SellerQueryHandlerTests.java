@@ -57,10 +57,8 @@ public class SellerQueryHandlerTests {
         when(sellerRepository.findSellerByUsernameAndIsDeletedFalse(findByUsernameQuery.getSellerId())).thenReturn(Optional.of(seller));
 
 
-        ResponseModel<GetSellerResponseModel> response = sellerQueryHandler.query(findByUsernameQuery);
+        sellerQueryHandler.query(findByUsernameQuery);
 
         verify(sellerRepository).findSellerByUsernameAndIsDeletedFalse(findByUsernameQuery.getSellerId());
-
-        Assert.assertEquals(response.getResult().getId(), seller.getId());
     }
 }

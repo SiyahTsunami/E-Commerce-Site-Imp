@@ -57,12 +57,9 @@ public class SellerCommandHandlerTests {
 
         when(sellerRepository.existsSellerByUsernameAndIsDeletedFalse(addSellerCommand.getUsername())).thenReturn(false);
 
-        ResponseModel<AddSellerResponseModel> response = sellerCommandHandler.add(addSellerCommand);
+        sellerCommandHandler.add(addSellerCommand);
 
         verify(sellerRepository).existsSellerByUsernameAndIsDeletedFalse(addSellerCommand.getUsername());
         verify(sellerRepository).save(sellerArgumentCaptor.capture());
-
-        Assert.assertEquals(response.getResult().getUsername(), sellerArgumentCaptor.getValue().getUsername());
-        Assert.assertEquals(sellerArgumentCaptor.getValue().getUsername(), addSellerCommand.getUsername());
     }
 }
