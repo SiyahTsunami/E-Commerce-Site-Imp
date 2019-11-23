@@ -1,7 +1,6 @@
 package com.dolap.backend.ecommercesite.application.handler;
 
 import com.dolap.backend.ecommercesite.domain.constants.ResponseModel;
-import com.dolap.backend.ecommercesite.domain.product.presentation.AddProductResponseModel;
 import com.dolap.backend.ecommercesite.domain.seller.Seller;
 import com.dolap.backend.ecommercesite.domain.seller.command.AddSellerCommand;
 import com.dolap.backend.ecommercesite.domain.seller.exceptions.SellerAlreadyCreatedException;

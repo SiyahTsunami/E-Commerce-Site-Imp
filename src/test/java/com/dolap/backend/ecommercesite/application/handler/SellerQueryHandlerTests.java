@@ -4,7 +4,6 @@ import com.dolap.backend.ecommercesite.domain.constants.ResponseModel;
 import com.dolap.backend.ecommercesite.domain.seller.Seller;
 import com.dolap.backend.ecommercesite.domain.seller.command.AddSellerCommand;
 import com.dolap.backend.ecommercesite.domain.seller.exceptions.SellerNotFoundException;
-import com.dolap.backend.ecommercesite.domain.seller.presentation.AddSellerResponseModel;
 import com.dolap.backend.ecommercesite.domain.seller.presentation.GetSellerResponseModel;
 import com.dolap.backend.ecommercesite.domain.seller.query.FindByUsernameQuery;
 import com.dolap.backend.ecommercesite.infrastructure.repositories.SellerRepository;

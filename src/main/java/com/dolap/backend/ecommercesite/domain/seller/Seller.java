@@ -31,8 +31,6 @@ public class Seller {
 
     private String createdDate;
 
-    private String changedDate;
-
     private boolean isDeleted;
 
     public Seller() {
@@ -87,10 +85,6 @@ public class Seller {
         return createdDate;
     }
 
-    public String getChangedDate() {
-        return changedDate;
-    }
-
     public boolean isDeleted() {
         return isDeleted;
     }
@@ -119,7 +113,6 @@ public class Seller {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\'' +
                 ", createdDate='" + createdDate + '\'' +
-                ", changedDate='" + changedDate + '\'' +
                 ", isDeleted=" + isDeleted +
                 '}';
     }

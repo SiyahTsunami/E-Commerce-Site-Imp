@@ -70,7 +70,7 @@ public class Product {
         this.name = StringUtils.isBlank(command.getName()) ? this.name : command.getName();
         this.category = command.getCategory() == null ? this.category : command.getCategory();
         this.description = StringUtils.isBlank(command.getDescription()) ? this.description : command.getDescription();
-        this.content = StringUtils.isBlank(command.getContent()) ? this.description : command.getDescription();
+        this.content = StringUtils.isBlank(command.getContent()) ? this.content : command.getContent();
         this.brand = StringUtils.isBlank(command.getBrand()) ? this.brand : command.getBrand();
         this.unitPrice = ObjectUtils.isEmpty(command.getUnitPrice()) ? this.unitPrice : command.getUnitPrice();
         this.unitWeight = ObjectUtils.isEmpty(command.getUnitWeight()) ? this.unitWeight : command.getUnitWeight();
