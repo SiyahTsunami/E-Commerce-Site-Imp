@@ -9,6 +9,7 @@ import com.dolap.backend.ecommercesite.domain.product.exceptions.ProductAlreadyC
 import com.dolap.backend.ecommercesite.domain.product.exceptions.ProductNotFoundException;
 import com.dolap.backend.ecommercesite.domain.product.presentation.AddProductResponseModel;
 import com.dolap.backend.ecommercesite.domain.seller.exceptions.SellerNotFoundException;
+import com.dolap.backend.ecommercesite.domain.seller.presentation.AddSellerResponseModel;
 import com.dolap.backend.ecommercesite.infrastructure.repositories.ProductRepository;
 import com.dolap.backend.ecommercesite.infrastructure.repositories.SellerRepository;
 import org.axonframework.commandhandling.CommandHandler;
@@ -40,7 +41,7 @@ public class ProductCommandHandler {
 
         productRepository.save(product);
 
-        return new ResponseModel<>(createAddProductResponseModel(product));
+        return new ResponseModel<>(new AddProductResponseModel(product));
     }
 
     @CommandHandler
@@ -61,14 +62,6 @@ public class ProductCommandHandler {
         product.delete();
 
         productRepository.save(product);
-    }
-
-    private AddProductResponseModel createAddProductResponseModel(Product product) {
-        AddProductResponseModel addProductResponseModel = new AddProductResponseModel();
-        addProductResponseModel.setProductId(product.getId());
-        addProductResponseModel.setSellerId(product.getSellerUsername());
-        addProductResponseModel.setCreatedDate(product.getCreatedDate());
-        return addProductResponseModel;
     }
 
 }

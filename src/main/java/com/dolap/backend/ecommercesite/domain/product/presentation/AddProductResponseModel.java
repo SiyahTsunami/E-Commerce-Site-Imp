@@ -1,22 +1,24 @@
 package com.dolap.backend.ecommercesite.domain.product.presentation;
 
+import com.dolap.backend.ecommercesite.domain.product.Product;
+
 import java.util.Objects;
 
 public class AddProductResponseModel {
 
     private String productId;
 
-    private String sellerId;
+    private String sellerUsername;
 
     private String createdDate;
 
     public AddProductResponseModel() {
     }
 
-    public AddProductResponseModel(String productId, String sellerId, String createdDate) {
-        this.productId = productId;
-        this.sellerId = sellerId;
-        this.createdDate = createdDate;
+    public AddProductResponseModel(Product product) {
+        this.productId = product.getId();
+        this.sellerUsername = product.getSellerUsername();
+        this.createdDate = product.getCreatedDate();
     }
 
     public String getProductId() {
@@ -27,12 +29,12 @@ public class AddProductResponseModel {
         this.productId = productId;
     }
 
-    public String getSellerId() {
-        return sellerId;
+    public String getSellerUsername() {
+        return sellerUsername;
     }
 
-    public void setSellerId(String sellerId) {
-        this.sellerId = sellerId;
+    public void setSellerUsername(String sellerUsername) {
+        this.sellerUsername = sellerUsername;
     }
 
     public String getCreatedDate() {
@@ -49,20 +51,20 @@ public class AddProductResponseModel {
         if (o == null || getClass() != o.getClass()) return false;
         AddProductResponseModel that = (AddProductResponseModel) o;
         return productId == that.productId &&
-                sellerId == that.sellerId &&
+                sellerUsername == that.sellerUsername &&
                 Objects.equals(createdDate, that.createdDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, sellerId, createdDate);
+        return Objects.hash(productId, sellerUsername, createdDate);
     }
 
     @Override
     public String toString() {
         return "AddProductResponseModel{" +
                 "productId=" + productId +
-                ", sellerId=" + sellerId +
+                ", sellerUsername=" + sellerUsername +
                 ", createdDate='" + createdDate + '\'' +
                 '}';
     }

@@ -30,14 +30,7 @@ public class SellerCommandHandler {
 
         sellerRepository.save(seller);
 
-        return new ResponseModel<>(createAddSellerResponseModel(seller));
+        return new ResponseModel<>(new AddSellerResponseModel(seller));
     }
 
-    private AddSellerResponseModel createAddSellerResponseModel(Seller seller) {
-        AddSellerResponseModel addSellerResponseModel = new AddSellerResponseModel();
-        addSellerResponseModel.setSellerId(seller.getId());
-        addSellerResponseModel.setUsername(seller.getUsername());
-        addSellerResponseModel.setCreatedDate(seller.getCreatedDate());
-        return addSellerResponseModel;
-    }
 }

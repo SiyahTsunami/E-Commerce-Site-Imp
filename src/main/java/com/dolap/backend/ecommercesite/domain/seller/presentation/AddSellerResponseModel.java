@@ -1,5 +1,7 @@
 package com.dolap.backend.ecommercesite.domain.seller.presentation;
 
+import com.dolap.backend.ecommercesite.domain.seller.Seller;
+
 import java.util.Objects;
 
 public class AddSellerResponseModel {
@@ -13,10 +15,10 @@ public class AddSellerResponseModel {
     public AddSellerResponseModel() {
     }
 
-    public AddSellerResponseModel(String sellerId, String username, String createdDate) {
-        this.sellerId = sellerId;
-        this.username = username;
-        this.createdDate = createdDate;
+    public AddSellerResponseModel(Seller seller) {
+        this.sellerId = seller.getId();
+        this.username = seller.getUsername();
+        this.createdDate = seller.getCreatedDate();
     }
 
     public String getSellerId() {
