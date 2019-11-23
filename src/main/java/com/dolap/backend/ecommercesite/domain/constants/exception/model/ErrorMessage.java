@@ -4,24 +4,13 @@ import java.util.Objects;
 
 public class ErrorMessage {
 
-    private String code;
-
     private String message;
 
     public ErrorMessage() {
     }
 
-    public ErrorMessage(String code, String message) {
-        this.code = code;
+    public ErrorMessage(String message) {
         this.message = message;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public String getMessage() {
@@ -37,20 +26,18 @@ public class ErrorMessage {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ErrorMessage that = (ErrorMessage) o;
-        return Objects.equals(code, that.code) &&
-                Objects.equals(message, that.message);
+        return Objects.equals(message, that.message);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(code, message);
+        return Objects.hash(message);
     }
 
     @Override
     public String toString() {
         return "ErrorMessage{" +
-                "code='" + code + '\'' +
-                ", message='" + message + '\'' +
+                "message='" + message + '\'' +
                 '}';
     }
 
