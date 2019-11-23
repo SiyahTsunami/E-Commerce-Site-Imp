@@ -39,7 +39,7 @@ public class Product {
 
     private GenderTypeEnum gender;
 
-    private String sellerId;
+    private String sellerUsername;
 
     private String createdDate;
 
@@ -123,8 +123,8 @@ public class Product {
         return gender;
     }
 
-    public String getSellerId() {
-        return sellerId;
+    public String getSellerUsername() {
+        return sellerUsername;
     }
 
     public String getCreatedDate() {
@@ -165,7 +165,7 @@ public class Product {
                 ", unitWeight=" + unitWeight +
                 ", photoUrl='" + photoUrl + '\'' +
                 ", gender=" + gender +
-                ", sellerId=" + sellerId +
+                ", sellerId=" + sellerUsername +
                 ", createdDate='" + createdDate + '\'' +
                 ", changedDate='" + changedDate + '\'' +
                 ", isDeleted=" + isDeleted +
