@@ -31,7 +31,7 @@ public class ProductQueryHandler {
         Product product = productRepository.findProductByIdAndIsDeletedFalse(query.getProductId())
                 .orElseThrow(ProductNotFoundException::new);
 
-        return new ResponseModel<>(new GetProductResponseModel(product));
+        return new ResponseModel<>(product);
     }
 
     @QueryHandler
