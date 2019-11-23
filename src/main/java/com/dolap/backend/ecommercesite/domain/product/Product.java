@@ -1,7 +1,7 @@
 package com.dolap.backend.ecommercesite.domain.product;
 
 import com.dolap.backend.ecommercesite.domain.constants.GenderTypeEnum;
-import com.dolap.backend.ecommercesite.domain.constants.ProductTypeEnum;
+import com.dolap.backend.ecommercesite.domain.constants.ProductCategoryEnum;
 import com.dolap.backend.ecommercesite.domain.product.commands.AddProductCommand;
 import com.dolap.backend.ecommercesite.domain.product.commands.UpdateProductCommand;
 import com.dolap.backend.ecommercesite.infrastructure.operations.DateOperations;
@@ -23,7 +23,7 @@ public class Product {
 
     private String name;
 
-    private ProductTypeEnum type;
+    private ProductCategoryEnum category;
 
     private String description;
 
@@ -53,7 +53,7 @@ public class Product {
     public Product(AddProductCommand command) {
         this.id = "Product_" + UUID.randomUUID().toString();
         this.name = command.getName();
-        this.type = command.getType();
+        this.category = command.getCategory();
         this.description = command.getDescription();
         this.content = command.getContent();
         this.brand = command.getBrand();
@@ -61,13 +61,14 @@ public class Product {
         this.unitWeight = command.getUnitWeight();
         this.photoUrl = command.getPhotoUrl();
         this.gender = command.getGender();
+        this.sellerUsername = command.getSellerUsername();
         this.createdDate = DateOperations.getNow();
         this.isDeleted = false;
     }
 
     public void update(UpdateProductCommand command) {
         this.name = StringUtils.isBlank(command.getName()) ? this.name : command.getName();
-        this.type = command.getType() == null ? this.type : command.getType();
+        this.category = command.getCategory() == null ? this.category : command.getCategory();
         this.description = StringUtils.isBlank(command.getDescription()) ? this.description : command.getDescription();
         this.content = StringUtils.isBlank(command.getContent()) ? this.description : command.getDescription();
         this.brand = StringUtils.isBlank(command.getBrand()) ? this.brand : command.getBrand();
@@ -91,8 +92,8 @@ public class Product {
         return name;
     }
 
-    public ProductTypeEnum getType() {
-        return type;
+    public ProductCategoryEnum getCategory() {
+        return category;
     }
 
     public String getDescription() {
@@ -157,7 +158,7 @@ public class Product {
         return "Product{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", type=" + type +
+                ", category=" + category +
                 ", description='" + description + '\'' +
                 ", content='" + content + '\'' +
                 ", brand='" + brand + '\'' +
@@ -165,7 +166,7 @@ public class Product {
                 ", unitWeight=" + unitWeight +
                 ", photoUrl='" + photoUrl + '\'' +
                 ", gender=" + gender +
-                ", sellerId=" + sellerUsername +
+                ", sellerUsername=" + sellerUsername +
                 ", createdDate='" + createdDate + '\'' +
                 ", changedDate='" + changedDate + '\'' +
                 ", isDeleted=" + isDeleted +

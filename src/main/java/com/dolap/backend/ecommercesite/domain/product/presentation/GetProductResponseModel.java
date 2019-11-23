@@ -1,16 +1,12 @@
-package com.dolap.backend.ecommercesite.domain.product.commands;
+package com.dolap.backend.ecommercesite.domain.product.presentation;
 
 import com.dolap.backend.ecommercesite.domain.constants.GenderTypeEnum;
 import com.dolap.backend.ecommercesite.domain.constants.ProductCategoryEnum;
-import com.dolap.backend.ecommercesite.interfaces.Command;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.dolap.backend.ecommercesite.domain.product.Product;
 
 import java.util.Objects;
 
-public class UpdateProductCommand implements Command {
-
-    @JsonIgnore
-    private String id;
+public class GetProductResponseModel {
 
     private String name;
 
@@ -22,35 +18,33 @@ public class UpdateProductCommand implements Command {
 
     private String brand;
 
-    private Double unitPrice;
+    private double unitPrice;
 
-    private Double unitWeight;
+    private double unitWeight;
 
     private String photoUrl;
 
     private GenderTypeEnum gender;
 
-    public UpdateProductCommand() {
+    private String sellerUsername;
+
+    private String createdDate;
+
+    public GetProductResponseModel() {
     }
 
-    public UpdateProductCommand(String name, ProductCategoryEnum category, String description, String content, String brand, Double unitPrice, Double unitWeight, String photoUrl, GenderTypeEnum gender) {
-        this.name = name;
-        this.category = category;
-        this.description = description;
-        this.content = content;
-        this.brand = brand;
-        this.unitPrice = unitPrice;
-        this.unitWeight = unitWeight;
-        this.photoUrl = photoUrl;
-        this.gender = gender;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public GetProductResponseModel(Product product) {
+        this.name = product.getName();
+        this.category = product.getCategory();
+        this.description = product.getDescription();
+        this.content = product.getContent();
+        this.brand = product.getBrand();
+        this.unitPrice = product.getUnitPrice();
+        this.unitWeight = product.getUnitWeight();
+        this.photoUrl = product.getPhotoUrl();
+        this.gender = product.getGender();
+        this.sellerUsername = product.getSellerUsername();
+        this.createdDate = product.getCreatedDate();
     }
 
     public String getName() {
@@ -93,19 +87,19 @@ public class UpdateProductCommand implements Command {
         this.brand = brand;
     }
 
-    public Double getUnitPrice() {
+    public double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(Double unitPrice) {
+    public void setUnitPrice(double unitPrice) {
         this.unitPrice = unitPrice;
     }
 
-    public Double getUnitWeight() {
+    public double getUnitWeight() {
         return unitWeight;
     }
 
-    public void setUnitWeight(Double unitWeight) {
+    public void setUnitWeight(double unitWeight) {
         this.unitWeight = unitWeight;
     }
 
@@ -125,13 +119,28 @@ public class UpdateProductCommand implements Command {
         this.gender = gender;
     }
 
+    public String getSellerUsername() {
+        return sellerUsername;
+    }
+
+    public void setSellerUsername(String sellerUsername) {
+        this.sellerUsername = sellerUsername;
+    }
+
+    public String getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UpdateProductCommand that = (UpdateProductCommand) o;
-        return id == that.id &&
-                Double.compare(that.unitPrice, unitPrice) == 0 &&
+        GetProductResponseModel that = (GetProductResponseModel) o;
+        return Double.compare(that.unitPrice, unitPrice) == 0 &&
                 Double.compare(that.unitWeight, unitWeight) == 0 &&
                 Objects.equals(name, that.name) &&
                 category == that.category &&
@@ -139,19 +148,20 @@ public class UpdateProductCommand implements Command {
                 Objects.equals(content, that.content) &&
                 Objects.equals(brand, that.brand) &&
                 Objects.equals(photoUrl, that.photoUrl) &&
-                gender == that.gender;
+                gender == that.gender &&
+                Objects.equals(sellerUsername, that.sellerUsername) &&
+                Objects.equals(createdDate, that.createdDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, category, description, content, brand, unitPrice, unitWeight, photoUrl, gender);
+        return Objects.hash(name, category, description, content, brand, unitPrice, unitWeight, photoUrl, gender, sellerUsername, createdDate);
     }
 
     @Override
     public String toString() {
-        return "UpdateProductCommand{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+        return "GetProductResponseModel{" +
+                "name='" + name + '\'' +
                 ", category=" + category +
                 ", description='" + description + '\'' +
                 ", content='" + content + '\'' +
@@ -160,6 +170,8 @@ public class UpdateProductCommand implements Command {
                 ", unitWeight=" + unitWeight +
                 ", photoUrl='" + photoUrl + '\'' +
                 ", gender=" + gender +
+                ", sellerUsername='" + sellerUsername + '\'' +
+                ", createdDate='" + createdDate + '\'' +
                 '}';
     }
 

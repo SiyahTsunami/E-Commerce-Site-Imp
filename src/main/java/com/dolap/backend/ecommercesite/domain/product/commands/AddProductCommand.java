@@ -1,7 +1,7 @@
 package com.dolap.backend.ecommercesite.domain.product.commands;
 
 import com.dolap.backend.ecommercesite.domain.constants.GenderTypeEnum;
-import com.dolap.backend.ecommercesite.domain.constants.ProductTypeEnum;
+import com.dolap.backend.ecommercesite.domain.constants.ProductCategoryEnum;
 import com.dolap.backend.ecommercesite.interfaces.Command;
 
 import javax.validation.constraints.NotBlank;
@@ -15,7 +15,7 @@ public class AddProductCommand implements Command {
     private String name;
 
     @NotNull
-    private ProductTypeEnum type;
+    private ProductCategoryEnum category;
 
     @NotBlank
     private String description;
@@ -44,9 +44,9 @@ public class AddProductCommand implements Command {
     public AddProductCommand() {
     }
 
-    public AddProductCommand(String name, ProductTypeEnum type, String description, String content, String brand, double unitPrice, double unitWeight, String photoUrl, GenderTypeEnum gender, String sellerUsername) {
+    public AddProductCommand(String name, ProductCategoryEnum category, String description, String content, String brand, double unitPrice, double unitWeight, String photoUrl, GenderTypeEnum gender, String sellerUsername) {
         this.name = name;
-        this.type = type;
+        this.category = category;
         this.description = description;
         this.content = content;
         this.brand = brand;
@@ -65,12 +65,12 @@ public class AddProductCommand implements Command {
         this.name = name;
     }
 
-    public ProductTypeEnum getType() {
-        return type;
+    public ProductCategoryEnum getCategory() {
+        return category;
     }
 
-    public void setType(ProductTypeEnum type) {
-        this.type = type;
+    public void setCategory(ProductCategoryEnum category) {
+        this.category = category;
     }
 
     public String getDescription() {
@@ -145,7 +145,7 @@ public class AddProductCommand implements Command {
         return Double.compare(that.unitPrice, unitPrice) == 0 &&
                 Double.compare(that.unitWeight, unitWeight) == 0 &&
                 Objects.equals(name, that.name) &&
-                type == that.type &&
+                category == that.category &&
                 Objects.equals(description, that.description) &&
                 Objects.equals(content, that.content) &&
                 Objects.equals(brand, that.brand) &&
@@ -156,14 +156,14 @@ public class AddProductCommand implements Command {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, type, description, content, brand, unitPrice, unitWeight, photoUrl, gender, sellerUsername);
+        return Objects.hash(name, category, description, content, brand, unitPrice, unitWeight, photoUrl, gender, sellerUsername);
     }
 
     @Override
     public String toString() {
         return "AddProductCommand{" +
                 "name='" + name + '\'' +
-                ", type=" + type +
+                ", category=" + category +
                 ", description='" + description + '\'' +
                 ", content='" + content + '\'' +
                 ", brand='" + brand + '\'' +

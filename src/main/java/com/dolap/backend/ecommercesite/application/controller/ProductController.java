@@ -1,9 +1,11 @@
 package com.dolap.backend.ecommercesite.application.controller;
 
+import com.dolap.backend.ecommercesite.domain.constants.ProductCategoryEnum;
 import com.dolap.backend.ecommercesite.domain.constants.ResponseModel;
 import com.dolap.backend.ecommercesite.domain.product.commands.AddProductCommand;
 import com.dolap.backend.ecommercesite.domain.product.commands.DeleteProductCommand;
 import com.dolap.backend.ecommercesite.domain.product.commands.UpdateProductCommand;
+import com.dolap.backend.ecommercesite.domain.product.query.FindByCategoryQuery;
 import com.dolap.backend.ecommercesite.domain.product.query.FindByProductIdQuery;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.queryhandling.QueryGateway;
@@ -53,7 +55,16 @@ public class ProductController {
 
     @GetMapping("/{productId}")
     public CompletableFuture<ResponseEntity> findByProductId(@PathVariable String productId) {
-        FindByProductIdQuery query = new FindByProductIdQuery(productId);
+        CompletableFuture<ResponseModel> task = queryGateway.query(new FindByProductIdQuery(productId), ResponseModel.class);
+
+        return task.thenApply(ResponseEntity::ok);
+    }
+
+    @GetMapping("cagetory/{category}")
+    public CompletableFuture<ResponseEntity> findByCategory(@PathVariable ProductCategoryEnum category,
+                                                            @RequestParam(defaultValue = "1", required = false) int pageNo,
+                                                            @RequestParam(defaultValue = "100", required = false) int pageSize) {
+        FindByCategoryQuery query = new FindByCategoryQuery(category, pageNo, pageSize);
 
         CompletableFuture<ResponseModel> task = queryGateway.query(query, ResponseModel.class);
 
