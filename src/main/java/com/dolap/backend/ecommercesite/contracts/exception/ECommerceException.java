@@ -1,4 +1,4 @@
-package com.dolap.backend.ecommercesite.interfaces;
+package com.dolap.backend.ecommercesite.contracts.exception;
 
 public class ECommerceException extends RuntimeException {
 

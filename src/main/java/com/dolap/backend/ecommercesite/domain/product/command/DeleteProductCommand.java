@@ -1,6 +1,6 @@
-package com.dolap.backend.ecommercesite.domain.product.commands;
+package com.dolap.backend.ecommercesite.domain.product.command;
 
-import com.dolap.backend.ecommercesite.interfaces.Command;
+import com.dolap.backend.ecommercesite.contracts.interfaces.Command;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Objects;

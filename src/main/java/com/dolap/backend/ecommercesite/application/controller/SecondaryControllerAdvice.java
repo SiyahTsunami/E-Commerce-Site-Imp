@@ -1,7 +1,7 @@
 package com.dolap.backend.ecommercesite.application.controller;
 
-import com.dolap.backend.ecommercesite.domain.constants.exception.model.ErrorDto;
-import com.dolap.backend.ecommercesite.domain.constants.exception.model.ErrorMessage;
+import com.dolap.backend.ecommercesite.contracts.exception.model.ErrorDto;
+import com.dolap.backend.ecommercesite.contracts.exception.model.ErrorMessage;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;

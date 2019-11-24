@@ -1,6 +1,6 @@
 package com.dolap.backend.ecommercesite.domain.seller.command;
 
-import com.dolap.backend.ecommercesite.interfaces.Command;
+import com.dolap.backend.ecommercesite.contracts.interfaces.Command;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;

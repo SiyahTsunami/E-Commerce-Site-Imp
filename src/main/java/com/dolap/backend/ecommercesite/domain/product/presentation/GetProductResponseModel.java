@@ -1,8 +1,8 @@
 package com.dolap.backend.ecommercesite.domain.product.presentation;
 
-import com.dolap.backend.ecommercesite.domain.constants.GenderTypeEnum;
-import com.dolap.backend.ecommercesite.domain.constants.ProductCategoryEnum;
 import com.dolap.backend.ecommercesite.domain.product.Product;
+import com.dolap.backend.ecommercesite.domain.product.constants.GenderTypeEnum;
+import com.dolap.backend.ecommercesite.domain.product.constants.ProductCategoryEnum;
 
 import java.util.Objects;
 

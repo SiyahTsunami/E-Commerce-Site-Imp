@@ -1,6 +1,6 @@
 package com.dolap.backend.ecommercesite.domain.seller.exceptions;
 
-import com.dolap.backend.ecommercesite.interfaces.ECommerceException;
+import com.dolap.backend.ecommercesite.contracts.exception.ECommerceException;
 
 public class SellerNotFoundException extends ECommerceException {
 

@@ -1,9 +1,9 @@
 package com.dolap.backend.ecommercesite.domain.product;
 
-import com.dolap.backend.ecommercesite.domain.constants.GenderTypeEnum;
-import com.dolap.backend.ecommercesite.domain.constants.ProductCategoryEnum;
-import com.dolap.backend.ecommercesite.domain.product.commands.AddProductCommand;
-import com.dolap.backend.ecommercesite.domain.product.commands.UpdateProductCommand;
+import com.dolap.backend.ecommercesite.domain.product.command.AddProductCommand;
+import com.dolap.backend.ecommercesite.domain.product.command.UpdateProductCommand;
+import com.dolap.backend.ecommercesite.domain.product.constants.GenderTypeEnum;
+import com.dolap.backend.ecommercesite.domain.product.constants.ProductCategoryEnum;
 import com.dolap.backend.ecommercesite.infrastructure.operations.DateOperations;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;

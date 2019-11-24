@@ -1,6 +1,6 @@
 package com.dolap.backend.ecommercesite.domain.seller.query;
 
-import com.dolap.backend.ecommercesite.interfaces.Query;
+import com.dolap.backend.ecommercesite.contracts.interfaces.Query;
 
 import java.util.Objects;
 

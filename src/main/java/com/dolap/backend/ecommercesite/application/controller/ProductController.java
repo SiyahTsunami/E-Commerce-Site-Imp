@@ -1,10 +1,10 @@
 package com.dolap.backend.ecommercesite.application.controller;
 
-import com.dolap.backend.ecommercesite.domain.constants.ProductCategoryEnum;
-import com.dolap.backend.ecommercesite.domain.constants.ResponseModel;
-import com.dolap.backend.ecommercesite.domain.product.commands.AddProductCommand;
-import com.dolap.backend.ecommercesite.domain.product.commands.DeleteProductCommand;
-import com.dolap.backend.ecommercesite.domain.product.commands.UpdateProductCommand;
+import com.dolap.backend.ecommercesite.contracts.models.ResponseModel;
+import com.dolap.backend.ecommercesite.domain.product.command.AddProductCommand;
+import com.dolap.backend.ecommercesite.domain.product.command.DeleteProductCommand;
+import com.dolap.backend.ecommercesite.domain.product.command.UpdateProductCommand;
+import com.dolap.backend.ecommercesite.domain.product.constants.ProductCategoryEnum;
 import com.dolap.backend.ecommercesite.domain.product.query.FindByCategoryQuery;
 import com.dolap.backend.ecommercesite.domain.product.query.FindByProductIdQuery;
 import org.axonframework.commandhandling.gateway.CommandGateway;

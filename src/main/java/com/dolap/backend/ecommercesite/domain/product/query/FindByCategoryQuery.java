@@ -1,6 +1,6 @@
 package com.dolap.backend.ecommercesite.domain.product.query;
 
-import com.dolap.backend.ecommercesite.domain.constants.ProductCategoryEnum;
+import com.dolap.backend.ecommercesite.domain.product.constants.ProductCategoryEnum;
 
 import java.util.Objects;
 

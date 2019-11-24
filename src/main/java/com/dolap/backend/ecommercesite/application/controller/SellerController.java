@@ -1,6 +1,6 @@
 package com.dolap.backend.ecommercesite.application.controller;
 
-import com.dolap.backend.ecommercesite.domain.constants.ResponseModel;
+import com.dolap.backend.ecommercesite.contracts.models.ResponseModel;
 import com.dolap.backend.ecommercesite.domain.seller.command.AddSellerCommand;
 import com.dolap.backend.ecommercesite.domain.seller.query.FindByUsernameQuery;
 import org.axonframework.commandhandling.gateway.CommandGateway;

@@ -1,4 +1,4 @@
-package com.dolap.backend.ecommercesite.domain.constants;
+package com.dolap.backend.ecommercesite.contracts.models;
 
 import java.util.Objects;
 

@@ -1,8 +1,8 @@
 package com.dolap.backend.ecommercesite.domain.product;
 
 
-import com.dolap.backend.ecommercesite.domain.product.commands.AddProductCommand;
-import com.dolap.backend.ecommercesite.domain.product.commands.UpdateProductCommand;
+import com.dolap.backend.ecommercesite.domain.product.command.AddProductCommand;
+import com.dolap.backend.ecommercesite.domain.product.command.UpdateProductCommand;
 import com.flextrade.jfixture.JFixture;
 import org.junit.Assert;
 import org.junit.Test;

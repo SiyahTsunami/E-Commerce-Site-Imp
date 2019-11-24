@@ -1,6 +1,6 @@
 package com.dolap.backend.ecommercesite.application.handler;
 
-import com.dolap.backend.ecommercesite.domain.constants.ResponseModel;
+import com.dolap.backend.ecommercesite.contracts.models.ResponseModel;
 import com.dolap.backend.ecommercesite.domain.seller.Seller;
 import com.dolap.backend.ecommercesite.domain.seller.exceptions.SellerNotFoundException;
 import com.dolap.backend.ecommercesite.domain.seller.presentation.GetSellerResponseModel;

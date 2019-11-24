@@ -1,10 +1,10 @@
 package com.dolap.backend.ecommercesite.application.handler;
 
-import com.dolap.backend.ecommercesite.domain.constants.ResponseModel;
+import com.dolap.backend.ecommercesite.contracts.models.ResponseModel;
 import com.dolap.backend.ecommercesite.domain.product.Product;
-import com.dolap.backend.ecommercesite.domain.product.commands.AddProductCommand;
-import com.dolap.backend.ecommercesite.domain.product.commands.DeleteProductCommand;
-import com.dolap.backend.ecommercesite.domain.product.commands.UpdateProductCommand;
+import com.dolap.backend.ecommercesite.domain.product.command.AddProductCommand;
+import com.dolap.backend.ecommercesite.domain.product.command.DeleteProductCommand;
+import com.dolap.backend.ecommercesite.domain.product.command.UpdateProductCommand;
 import com.dolap.backend.ecommercesite.domain.product.exceptions.ProductAlreadyCreatedException;
 import com.dolap.backend.ecommercesite.domain.product.exceptions.ProductNotFoundException;
 import com.dolap.backend.ecommercesite.domain.product.presentation.AddProductResponseModel;
