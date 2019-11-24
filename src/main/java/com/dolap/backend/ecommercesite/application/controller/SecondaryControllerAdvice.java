@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.Collections;
-import java.util.Objects;
-import java.util.concurrent.CompletionException;
 
 @RestControllerAdvice
 @Order(Ordered.LOWEST_PRECEDENCE)
@@ -22,13 +20,9 @@ public class SecondaryControllerAdvice {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ErrorDto notExpectedError(Throwable throwable) {
-        if (throwable instanceof CompletionException && Objects.nonNull(throwable.getCause())) {
-            throwable = throwable.getCause();
-        }
-
         ErrorDto response = new ErrorDto();
         response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-        response.setMessages(Collections.singletonList(new ErrorMessage(throwable.getMessage())));
+        response.setMessages(Collections.singletonList(new ErrorMessage("An unexpected error occurred.")));
 
         return response;
     }
