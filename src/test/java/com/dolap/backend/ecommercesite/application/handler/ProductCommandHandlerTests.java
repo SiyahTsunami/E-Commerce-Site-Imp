@@ -31,12 +31,16 @@ public class ProductCommandHandlerTests {
 
     @Captor
     ArgumentCaptor<Product> productArgumentCaptor;
+
     @InjectMocks
     private ProductCommandHandler productCommandHandler;
+
     @Mock
     private ProductRepository productRepository;
+
     @Mock
     private SellerRepository sellerRepository;
+
     private JFixture fixture = new JFixture();
 
     @After
@@ -141,4 +145,5 @@ public class ProductCommandHandlerTests {
         verify(productRepository).findProductByIdAndIsDeletedFalse(deleteProductCommand.getId());
         verify(productRepository).save(product);
     }
+
 }
